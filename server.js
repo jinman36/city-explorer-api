@@ -1,11 +1,18 @@
 'use strict';
 
 const express = require('express');
+
 require('dotenv').config();
+
 const cors = require('cors');
-const { request } = require('express');
+
+// const { request } = require('express');
+
 const app = express();
-app.use(cores());
+
+app.use(cors());
+
+
 const PORT = process.env.PORT || 3001;
 
 
@@ -15,4 +22,4 @@ const PORT = process.env.PORT || 3001;
 
 
 
-app.listen(PORT, () => console.log('lisening on Port:' PORT));
+app.listen(PORT, () => console.log('listening on Port:', PORT));
