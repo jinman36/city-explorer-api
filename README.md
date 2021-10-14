@@ -1,9 +1,11 @@
 
 
-# Project Name city-explorer-api
+# Project Name: City Explorer-api
 
 **Author**: Jeff Inman
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Netlify Link**: [The City Explorer](the-city-explorer.netlify.app)
+**Project Trello Board**: [City Explorer Trello](https://trello.com/b/Xsm3RhAU/module-2-city-explorer)
 
 ## Overview
 Custom API server, which will provide data for the City Explorer front-end application.
@@ -13,6 +15,7 @@ Custom API server, which will provide data for the City Explorer front-end appli
 
 ## Architecture
 ![Flow Diagram](lab-07.JPG)
+![Flow Diagram](Lab-08.jpeg)
 
 ## Change Log
 

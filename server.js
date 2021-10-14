@@ -18,27 +18,32 @@ app.get('*', (request, response) => {
 });
 
 function handleWeather(request, response) {
-  console.log('query parameters:', request.query);
-  let { lat, lon, searchQuery } = request.query;
-  // console.log(lat, lon, searchQuery);
+  // console.log('query parameters:', request.query);
+  let { searchQuery } = request.query;
+  // console.log(searchQuery);
 
   let foundCity = weather.find(object => object.city_name.toLowerCase() === searchQuery.toLowerCase());
-  console.log(foundCity.data);
+  // console.log(foundCity.data);
 
   try {
-    const weatherArray = foundCity.data.map(day => {
-      return day.weather.description;
-    });
-    console.log(weatherArray);
+    const weatherArray = foundCity.data.map(day =>new Forecast(day));
+    response.status(200).send(weatherArray);
   }
   catch (error) {
     console.log('Cannot find City');
-    response.status(404).send('Unable to find CIty');
+    response.status(404).send('Unable to find City');
   }
 
 
 
   response.status(200).send('weather route works');
+}
+
+class Forecast {
+  constructor (day) {
+    this.description = `Low of ${day.low_temp}, high of ${day.max_temp} with ${day.weather.description}`;
+    this.date = day.valid_date;
+  }
 }
 
 
