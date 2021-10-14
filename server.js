@@ -31,7 +31,7 @@ function handleWeather(request, response) {
   }
   catch (error) {
     console.log('Cannot find City');
-    response.status(404).send('Unable to find City');
+    response.status(500).send('Unable to find City');
   }
 
 
