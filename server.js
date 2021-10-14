@@ -19,7 +19,7 @@ app.get('*', (request, response) => {
 
 function handleWeather(request, response) {
   // console.log('query parameters:', request.query);
-  let { searchQuery } = request.query;
+  let { searchQuery} = request.query;
   // console.log(searchQuery);
 
   let foundCity = weather.find(object => object.city_name.toLowerCase() === searchQuery.toLowerCase());
@@ -27,7 +27,7 @@ function handleWeather(request, response) {
 
   try {
     const weatherArray = foundCity.data.map(day =>new Forecast(day));
-    response.status(200).send(weatherArray);
+    console.log(weatherArray);
   }
   catch (error) {
     console.log('Cannot find City');
