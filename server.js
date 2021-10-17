@@ -24,7 +24,7 @@ async function handleMovies(request, response) {
     let movieData = await axios.get(movieUrl);
     // console.log(movieData.data);
     let movieResults = movieData.data.results;
-    console.log(movieResults);
+    // console.log(movieResults);
     let movieObjects = movieResults.map(oneMovie => new Movie(oneMovie));
     response.status(200).send(movieObjects);
   }
