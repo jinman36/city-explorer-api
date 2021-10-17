@@ -5,6 +5,7 @@ require('dotenv').config();
 const cors = require('cors');
 const weather = require('./data/weather.json');
 const app = express();
+const axios = require('axios');
 app.use(cors());
 const PORT = process.env.PORT || 3001;
 
@@ -17,21 +18,25 @@ app.get('*', (request, response) => {
   response.status(404).send('Page not found');
 });
 
-function handleWeather(request, response) {
+async function handleWeather(request, response) {
   // console.log('query parameters:', request.query);
-  let { searchQuery} = request.query;
   // console.log(searchQuery);
-
-  let foundCity = weather.find(object => object.city_name.toLowerCase() === searchQuery.toLowerCase());
+  // let foundCity = weather.find(object => object.city_name.toLowerCase() === searchQuery.toLowerCase());
   // console.log(foundCity.data);
+  let { lat, lon } = request.query;
+  let weatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lon}&units=I&key=${process.env.REACT_APP_WEATHER_API_KEY}`;
 
   try {
-    const weatherArray = foundCity.data.map(day =>new Forecast(day));
-    console.log(weatherArray);
+    let weatherData = await axios.get(weatherUrl);
+    let weatherObject = weatherData.data;
+
+    const weatherArray = weatherObject.data.map(day =>new Forecast(day));
+    // console.log(weatherArray);
+    response.status(200).send(weatherArray);
   }
   catch (error) {
-    console.log('Cannot find City');
-    response.status(500).send('Unable to find City');
+    // console.log('Cannot find City');
+    response.status(500).send('Unable to get Forecast');
   }
 
 
