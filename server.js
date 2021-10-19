@@ -10,12 +10,16 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 
+let weatherData = require('.modules/weather.js');
+
 app.get('/', (request, response) => response.status(200).send('this is the root.'));
-app.get('/weather', handleWeather);
+app.get('/weather', weatherData);
 app.get('/movies', handleMovies);
 app.get('*', (request, response) => {
   response.status(404).send('Page not found');
 });
+
+
 
 async function handleMovies(request, response) {
   let { city } = request.query;
@@ -33,27 +37,27 @@ async function handleMovies(request, response) {
   }
 }
 
-async function handleWeather(request, response) {
-  let { lat, lon } = request.query;
-  let weatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lon}&units=I&key=${process.env.REACT_APP_WEATHER_API_KEY}`;
-  try {
-    let weatherData = await axios.get(weatherUrl);
-    let weatherObject = weatherData.data;
-    const weatherArray = weatherObject.data.map(day => new Forecast(day));
-    response.status(200).send(weatherArray);
-  }
-  catch (error) {
-    response.status(500).send('Unable to get Forecast');
-  }
-  response.status(200).send('weather route works');
-}
+// async function handleWeather(request, response) {
+//   let { lat, lon } = request.query;
+//   let weatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lon}&units=I&key=${process.env.REACT_APP_WEATHER_API_KEY}`;
+//   try {
+//     let weatherData = await axios.get(weatherUrl);
+//     let weatherObject = weatherData.data;
+//     const weatherArray = weatherObject.data.map(day => new Forecast(day));
+//     response.status(200).send(weatherArray);
+//   }
+//   catch (error) {
+//     response.status(500).send('Unable to get Forecast');
+//   }
+//   response.status(200).send('weather route works');
+// }
 
-class Forecast {
-  constructor(day) {
-    this.description = `Low of ${day.low_temp}, high of ${day.max_temp} with ${day.weather.description}`;
-    this.date = day.valid_date;
-  }
-}
+// class Forecast {
+//   constructor(day) {
+//     this.description = `Low of ${day.low_temp}, high of ${day.max_temp} with ${day.weather.description}`;
+//     this.date = day.valid_date;
+//   }
+// }
 
 class Movie {
   constructor(oneMovie) {
