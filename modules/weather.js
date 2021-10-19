@@ -1,7 +1,11 @@
+'use strict';
 
-async function handleWeather(request, response) {
+const axios = require('axios');
+
+async function weatherData(request, response) {
   let { lat, lon } = request.query;
   let weatherUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lon}&units=I&key=${process.env.REACT_APP_WEATHER_API_KEY}`;
+  console.log(weatherUrl);
   try {
     let weatherData = await axios.get(weatherUrl);
     let weatherObject = weatherData.data;
@@ -21,4 +25,4 @@ class Forecast {
   }
 }
 
-module.exports = weatherData
+module.exports = weatherData;
