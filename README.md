@@ -16,6 +16,7 @@ Custom API server, which will provide data for the City Explorer front-end appli
 ## Architecture
 ![Flow Diagram](lab-07.JPG)
 ![Flow Diagram](Lab-08.jpeg)
+![Flow Diagram](lab-10.JPG)
 
 ## Change Log
 
