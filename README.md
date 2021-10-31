@@ -4,7 +4,7 @@
 
 **Author**: Jeff Inman
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
-**Netlify Link**: [The City Explorer](the-city-explorer.netlify.app)
+**Netlify Link**: [The City Explorer](https://the-city-explorer.netlify.app)
 **Project Trello Board**: [City Explorer Trello](https://trello.com/b/Xsm3RhAU/module-2-city-explorer)
 
 ## Overview
