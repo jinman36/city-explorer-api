@@ -6,6 +6,7 @@
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 **Netlify Link**: [The City Explorer](https://the-city-explorer.netlify.app)
 **Project Trello Board**: [City Explorer Trello](https://trello.com/b/Xsm3RhAU/module-2-city-explorer)
+**Heroku Link**: [jinman-city-explorer-api](https://git.heroku.com/jinman-city-explorer-api.git)
 
 ## Overview
 Custom API server, which will provide data for the City Explorer front-end application.
